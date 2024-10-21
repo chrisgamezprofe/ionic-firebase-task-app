@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <ion-title class="title" >REGISTRO</ion-title>
+    <p class="subTitle">Registrese para acceder a su cuenta</p>
+  </div>
+
+  <form [formGroup]="myForm" novalidate>
+    <div class="ion-padding">
+      <ion-item>
+        <ion-input formControlName="fullName" label="Nombre:" placeholder="David" class="input"></ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+      <div *ngIf="this.myForm.controls?.['fullName'].touched && this.myForm.controls?.['fullName'].invalid">
+        <ion-text color="danger" *ngIf="errorControl?.['fullName'].errors?.['required']">
+          * El nombre es obligatorio
+        </ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="email" label="Correo electrónico:" placeholder="c@c.com" class="input"></ion-input>
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="this.myForm.controls?.['email'].touched && this.myForm.controls?.['email'].invalid">
+        <ion-text color="danger" *ngIf="errorControl?.['email'].errors?.['required']">
+          * El correo es obligatorio
+        </ion-text>
+        <ion-text color="danger" *ngIf="errorControl?.['email'].errors?.['pattern']">
+          * Email no válido
+        </ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="********" class="input" label="Contraseña:">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="this.myForm.controls?.['password'].touched && this.myForm.controls?.['password'].invalid">
+        <ion-text color="danger" *ngIf="errorControl?.['password'].errors?.['required']">
+          * La contraseña es obligatoria
+        </ion-text>
+
+        <ion-text color="danger" *ngIf="errorControl?.['password'].errors?.['pattern']">
+          * La contraseña debe contener número, letras y caracteres especiales
+        </ion-text>
+      </div>
+
+      <div class="link">
+        <p>Ya tengo una cuenta, <a [routerLink]="['../login']" >Iniciar sesión.</a></p>
+      </div>
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 30px;margin-right: 8px;">
+        <ion-fab-button (click)="register()">
+            <ion-icon name="chevron-forward"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    </div>
+  </form>
+</ion-content>

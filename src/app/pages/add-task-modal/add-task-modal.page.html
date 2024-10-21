@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nueva Tarea</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label position="floating">Titulo de la tarea</ion-label>
+    <ion-input type="text" [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label >Prioridad</ion-label>
+      <ion-select [(ngModel)]="priority">
+        <ion-select-option value="high">Alta</ion-select-option>
+        <ion-select-option value="middle">Media</ion-select-option>
+        <ion-select-option value="low">Baja</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label >Categoría</ion-label>
+      <ion-select [(ngModel)]="category">
+        <ion-select-option value="Personal">Personal</ion-select-option>
+        <ion-select-option value="Trabajo">Trabajo</ion-select-option>
+        <ion-select-option value="Otro">Otro</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha finalización</ion-label>
+    <ion-datetime [(ngModel)]="dueDate" display-format="YYYY.MM.DD"></ion-datetime>
+  </ion-item>
+
+  <ion-button disabled="{{this.title.trim().length<3}}" (click)="addTask()" expand="block" shape="round">
+    Guardar tarea
+  </ion-button>
+</ion-content>
